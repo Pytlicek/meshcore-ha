@@ -66,7 +66,7 @@ CONF_REPEATER_UPDATE_INTERVAL: Final = "update_interval"
 CONF_REPEATER_TELEMETRY_ENABLED: Final = "telemetry_enabled"
 CONF_REPEATER_DISABLE_PATH_RESET: Final = "disable_path_reset"
 DEFAULT_REPEATER_UPDATE_INTERVAL: Final = 7200  # 2 hours in seconds
-MIN_UPDATE_INTERVAL: Final = 300  # 5 minutes minimum
+MIN_UPDATE_INTERVAL: Final = 120
 MAX_REPEATER_FAILURES_BEFORE_LOGIN: Final = 5  # After this many failures, try login
 
 # Client tracking constants
@@ -74,7 +74,7 @@ CONF_TRACKED_CLIENTS: Final = "tracked_clients"
 CONF_CLIENT_NAME: Final = "client_name"
 CONF_CLIENT_UPDATE_INTERVAL: Final = "update_interval"
 CONF_CLIENT_DISABLE_PATH_RESET: Final = "disable_path_reset"
-DEFAULT_CLIENT_UPDATE_INTERVAL: Final = 7200  # 2 hours in seconds
+DEFAULT_CLIENT_UPDATE_INTERVAL: Final = 300 
 
 # Device monitoring
 CONF_DEVICE_DISABLED: Final = "disabled"
@@ -86,7 +86,7 @@ CONF_DISABLE_CONTACT_DISCOVERY: Final = "disable_contact_discovery"
 # Self telemetry settings
 CONF_SELF_TELEMETRY_ENABLED: Final = "self_telemetry_enabled"
 CONF_SELF_TELEMETRY_INTERVAL: Final = "self_telemetry_interval"
-DEFAULT_SELF_TELEMETRY_INTERVAL: Final = 300  # 5 minutes in seconds
+DEFAULT_SELF_TELEMETRY_INTERVAL: Final = 120 
 
 # Backoff constants for repeater failures
 REPEATER_BACKOFF_BASE: Final = 2  # Base multiplier for exponential backoff
@@ -108,18 +108,18 @@ CONF_MESSAGES_INTERVAL: Final = "messages_interval"
 DEFAULT_UPDATE_TICK: Final = 5  # base polling interval
 
 # Other constants
-CONNECTION_TIMEOUT: Final = 10  # seconds
+CONNECTION_TIMEOUT: Final = 20  # seconds
 
 # Rate limiter settings
 RATE_LIMITER_CAPACITY: Final = 20
 RATE_LIMITER_REFILL_RATE_SECONDS: Final = 120
 
 # RX_LOG correlation cache settings
-RX_LOG_CACHE_MAX_SIZE: Final = 100
+RX_LOG_CACHE_MAX_SIZE: Final = 180
 RX_LOG_CACHE_TTL_SECONDS: Final = 5.0
 
 # Sensor availability timeout multiplier
-SENSOR_AVAILABILITY_TIMEOUT_MULTIPLIER: Final = 3
+SENSOR_AVAILABILITY_TIMEOUT_MULTIPLIER: Final = 20
 
 
 class NodeType(IntEnum):
@@ -127,4 +127,3 @@ class NodeType(IntEnum):
     REPEATER = 2
     ROOM_SERVER = 3
     SENSOR = 4
-
