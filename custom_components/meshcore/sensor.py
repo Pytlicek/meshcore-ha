@@ -406,10 +406,6 @@ async def async_setup_entry(
         for identifier in device.identifiers:
             if identifier[0] == DOMAIN:
                 device_id = identifier[1]
-
-                # Only consider devices belonging to this config entry
-                if not device_id.startswith(entry.entry_id):
-                    continue
                 
                 # If this device is a repeater but not in our active list, remove it
                 if "_repeater_" in device_id and device_id not in active_repeater_device_ids:
@@ -551,7 +547,8 @@ class RateLimiterSensor(CoordinatorEntity, SensorEntity):
 
     def _handle_coordinator_update(self) -> None:
         """Handle updated data from the coordinator."""
-        self.async_write_ha_state()
+        if self.hass:
+            self.async_write_ha_state()
 
 
 class MeshCoreSensor(CoordinatorEntity, SensorEntity):
@@ -1044,27 +1041,10 @@ class MeshCoreRepeaterSensor(CoordinatorEntity, SensorEntity):
             
         # Return the value directly for other sensors
         return value
-                
-        
+
     @property
     def available(self) -> bool:
-        """Return if the sensor is available."""
-        # First check if we have cached stats from an event
-        if self._cached_stats:
-            last_updated = self._cached_stats.get("last_updated", 0)
-            # Use dynamic timeout based on configured update interval
-            update_interval = self.coordinator.get_device_update_interval(self.public_key)
-            timeout = update_interval * SENSOR_AVAILABILITY_TIMEOUT_MULTIPLIER
-            if time.time() - last_updated < timeout:
-                return True
-        
-        # Otherwise check coordinator data
-        if not super().available or not self.coordinator.data:
-            return False
-            
-        # Check if we have stats for this repeater
-        repeater_stats = self.coordinator.data.get("repeater_stats", {})
-        return self.repeater_name in repeater_stats
+        return super().available
         
     @property
     def extra_state_attributes(self) -> Dict[str, Any]:
@@ -1160,9 +1140,3 @@ class MeshCoreRepeaterSensor(CoordinatorEntity, SensorEntity):
                     attributes["human_readable"] = f"{days}d {hours}h {minutes}m {secs}s"
                     
         return attributes
-
-
-
-
-
-
