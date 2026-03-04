@@ -530,7 +530,8 @@ class MeshCoreTelemetrySensor(CoordinatorEntity, SensorEntity):
 
                 # Update Home Assistant state only if requested
                 if update_state:
-                    self.async_write_ha_state()
+                    if self.hass:
+                        self.async_write_ha_state()
                 break
 
     @property
@@ -606,7 +607,8 @@ class MeshCoreBatteryPercentageSensor(MeshCoreTelemetrySensor):
 
                     # Update Home Assistant state only if requested
                     if update_state:
-                        self.async_write_ha_state()
+                        if self.hass:
+                            self.async_write_ha_state()
                 break
 
     @property

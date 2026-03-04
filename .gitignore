@@ -3,3 +3,12 @@ sync-to-ha.sh
 script_venv
 .venv
 **/.claude/settings.local.json
+/.idea
+/.idea/inspectionProfiles/profiles_settings.xml
+/.idea/inspectionProfiles/Project_Default.xml
+/.idea/.gitignore
+/.idea/meshcore-ha.iml
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/ruff.xml
+/.idea/vcs.xml

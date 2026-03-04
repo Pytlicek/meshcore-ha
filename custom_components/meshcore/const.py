@@ -65,16 +65,16 @@ CONF_REPEATER_PASSWORD: Final = "password"
 CONF_REPEATER_UPDATE_INTERVAL: Final = "update_interval"
 CONF_REPEATER_TELEMETRY_ENABLED: Final = "telemetry_enabled"
 CONF_REPEATER_DISABLE_PATH_RESET: Final = "disable_path_reset"
-DEFAULT_REPEATER_UPDATE_INTERVAL: Final = 7200  # 2 hours in seconds
-MIN_UPDATE_INTERVAL: Final = 120
-MAX_REPEATER_FAILURES_BEFORE_LOGIN: Final = 5  # After this many failures, try login
+DEFAULT_REPEATER_UPDATE_INTERVAL: Final = 300 # in seconds
+MIN_UPDATE_INTERVAL: Final = 10
+MAX_REPEATER_FAILURES_BEFORE_LOGIN: Final = 10  # After this many failures, try login
 
 # Client tracking constants
 CONF_TRACKED_CLIENTS: Final = "tracked_clients"
 CONF_CLIENT_NAME: Final = "client_name"
 CONF_CLIENT_UPDATE_INTERVAL: Final = "update_interval"
 CONF_CLIENT_DISABLE_PATH_RESET: Final = "disable_path_reset"
-DEFAULT_CLIENT_UPDATE_INTERVAL: Final = 300 
+DEFAULT_CLIENT_UPDATE_INTERVAL: Final = 300
 
 # Device monitoring
 CONF_DEVICE_DISABLED: Final = "disabled"
@@ -86,13 +86,13 @@ CONF_DISABLE_CONTACT_DISCOVERY: Final = "disable_contact_discovery"
 # Self telemetry settings
 CONF_SELF_TELEMETRY_ENABLED: Final = "self_telemetry_enabled"
 CONF_SELF_TELEMETRY_INTERVAL: Final = "self_telemetry_interval"
-DEFAULT_SELF_TELEMETRY_INTERVAL: Final = 120 
+DEFAULT_SELF_TELEMETRY_INTERVAL: Final = 120
 
 # Backoff constants for repeater failures
-REPEATER_BACKOFF_BASE: Final = 2  # Base multiplier for exponential backoff
-REPEATER_BACKOFF_MAX_MULTIPLIER: Final = 120  # Maximum backoff multiplier (10 minutes when * 5 seconds)
-MAX_FAILURES_BEFORE_PATH_RESET: Final = 3  # Reset path after this many failures
-MAX_RETRY_ATTEMPTS: Final = 5  # Maximum retry attempts within refresh window
+REPEATER_BACKOFF_BASE: Final = 1.5  # Base multiplier for exponential backoff
+REPEATER_BACKOFF_MAX_MULTIPLIER: Final = 300  # Maximum backoff multiplier (10 minutes when * 5 seconds)
+MAX_FAILURES_BEFORE_PATH_RESET: Final = 5  # Reset path after this many failures
+MAX_RETRY_ATTEMPTS: Final = 10  # Maximum retry attempts within refresh window
 MAX_RANDOM_DELAY: Final = 30  # Maximum random delay in seconds
 
 
@@ -105,21 +105,21 @@ BAT_VMAX: Final = 4200
 CONF_INFO_INTERVAL: Final = "info_interval"  # For both node info and contacts
 CONF_MESSAGES_INTERVAL: Final = "messages_interval"
 
-DEFAULT_UPDATE_TICK: Final = 5  # base polling interval
+DEFAULT_UPDATE_TICK: Final = 2  # base polling interval
 
 # Other constants
-CONNECTION_TIMEOUT: Final = 20  # seconds
+CONNECTION_TIMEOUT: Final = 30  # seconds
 
 # Rate limiter settings
-RATE_LIMITER_CAPACITY: Final = 20
-RATE_LIMITER_REFILL_RATE_SECONDS: Final = 120
+RATE_LIMITER_CAPACITY: Final = 50
+RATE_LIMITER_REFILL_RATE_SECONDS: Final = 60
 
 # RX_LOG correlation cache settings
-RX_LOG_CACHE_MAX_SIZE: Final = 180
+RX_LOG_CACHE_MAX_SIZE: Final = 300
 RX_LOG_CACHE_TTL_SECONDS: Final = 5.0
 
 # Sensor availability timeout multiplier
-SENSOR_AVAILABILITY_TIMEOUT_MULTIPLIER: Final = 20
+SENSOR_AVAILABILITY_TIMEOUT_MULTIPLIER: Final = 10
 
 
 class NodeType(IntEnum):
